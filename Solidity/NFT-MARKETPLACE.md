@@ -36,8 +36,6 @@
 ### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/your-org/nft-marketplace.git
 
 # Install dependencies
 cd nft-marketplace
