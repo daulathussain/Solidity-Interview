@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🚀 JavaScript Developer Roadmap</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        min-height: 100vh;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 60px 0;
+        color: white;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .hero .subtitle {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        margin-bottom: 30px;
+        animation: fadeInUp 1s ease-out 0.2s both;
+      }
+
+      .badges {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        animation: fadeInUp 1s ease-out 0.4s both;
+      }
+
+      .badge {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 25px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .badge:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .progress-tracker {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        margin: 40px 0;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        animation: slideInUp 0.8s ease-out;
+      }
+
+      .progress-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .progress-header h2 {
+        color: #4a5568;
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .overall-progress {
+        background: #f7fafc;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 30px;
+      }
+
+      .progress-bar {
+        background: #e2e8f0;
+        border-radius: 10px;
+        height: 20px;
+        overflow: hidden;
+        margin-bottom: 15px;
+      }
+
+      .progress-fill {
+        background: linear-gradient(90deg, #f093fb, #f5576c);
+        height: 100%;
+        border-radius: 10px;
+        transition: width 0.5s ease;
+        position: relative;
+      }
+
+      .progress-fill::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        animation: shimmer 2s infinite;
+      }
+
+      .progress-text {
+        text-align: center;
+        font-weight: 600;
+        color: #4a5568;
+      }
+
+      .phases-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+      }
+
+      .phase-card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border-left: 5px solid;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .phase-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--phase-color), transparent);
+      }
+
+      .phase-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .phase-1 {
+        --phase-color: #ff6b6b;
+        border-left-color: #ff6b6b;
+      }
+      .phase-2 {
+        --phase-color: #4ecdc4;
+        border-left-color: #4ecdc4;
+      }
+      .phase-3 {
+        --phase-color: #45b7d1;
+        border-left-color: #45b7d1;
+      }
+      .phase-4 {
+        --phase-color: #96ceb4;
+        border-left-color: #96ceb4;
+      }
+      .phase-5 {
+        --phase-color: #ffeaa7;
+        border-left-color: #ffeaa7;
+      }
+      .phase-6 {
+        --phase-color: #dda0dd;
+        border-left-color: #dda0dd;
+      }
+      .phase-7 {
+        --phase-color: #98d8c8;
+        border-left-color: #98d8c8;
+      }
+      .phase-8 {
+        --phase-color: #f093fb;
+        border-left-color: #f093fb;
+      }
+      .phase-9 {
+        --phase-color: #667eea;
+        border-left-color: #667eea;
+      }
+
+      .phase-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .phase-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2d3748;
+      }
+
+      .phase-duration {
+        background: var(--phase-color);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .checklist {
+        list-style: none;
+      }
+
+      .checklist-item {
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
+        padding: 12px;
+        background: #f8fafc;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .checklist-item:hover {
+        background: #edf2f7;
+        transform: translateX(5px);
+      }
+
+      .checkbox {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #cbd5e0;
+        border-radius: 4px;
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .checkbox.checked {
+        background: var(--phase-color);
+        border-color: var(--phase-color);
+      }
+
+      .checkbox.checked::after {
+        content: "✓";
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      .checklist-text {
+        flex: 1;
+        color: #4a5568;
+        font-weight: 500;
+      }
+
+      .checklist-item.completed .checklist-text {
+        text-decoration: line-through;
+        opacity: 0.6;
+      }
+
+      .projects-section {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        margin: 40px 0;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+      }
+
+      .project-card {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .project-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      .project-card h4 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+      }
+
+      .project-card p {
+        opacity: 0.9;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+      }
+
+      .difficulty {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: inline-block;
+      }
+
+      .frameworks-section {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        margin: 40px 0;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .frameworks-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+      }
+
+      .framework-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .framework-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .framework-card h4 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+      }
+
+      .framework-card p {
+        opacity: 0.9;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+      }
+
+      .framework-logo {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .stats-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 25px;
+        margin: 40px 0;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #f093fb;
+        margin-bottom: 10px;
+      }
+
+      .stat-label {
+        color: #718096;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+      }
+
+      .floating-nav {
+        position: fixed;
+        top: 50%;
+        right: 30px;
+        transform: translateY(-50%);
+        z-index: 1000;
+        background: white;
+        border-radius: 25px;
+        padding: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-item {
+        display: block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #cbd5e0;
+        margin: 10px 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .nav-item.active {
+        background: #f093fb;
+        transform: scale(1.3);
+      }
+
+      .nav-item:hover {
+        background: #f093fb;
+        transform: scale(1.2);
+      }
+
+      .nav-tooltip {
+        position: absolute;
+        right: 25px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #2d3748;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+      }
+
+      .nav-tooltip::after {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 6px solid transparent;
+        border-left-color: #2d3748;
+      }
+
+      .nav-item:hover .nav-tooltip {
+        opacity: 1;
+      }
+
+      .section {
+        margin: 60px 0;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        color: #2d3748;
+        margin-bottom: 30px;
+        text-align: center;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, #f093fb, #f5576c);
+        border-radius: 2px;
+      }
+
+      .js-version-info {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 15px;
+        margin: 30px 0;
+        text-align: center;
+      }
+
+      .js-version-info h3 {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+      }
+
+      .js-version-info p {
+        opacity: 0.9;
+        font-size: 1.1rem;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 2000;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        max-width: 700px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: #718096;
+      }
+
+      .code-snippet {
+        background: #2d3748;
+        color: #e2e8f0;
+        padding: 20px;
+        border-radius: 10px;
+        font-family: "Monaco", "Menlo", monospace;
+        font-size: 0.9rem;
+        overflow-x: auto;
+        margin: 15px 0;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .floating-nav {
+          display: none;
+        }
+
+        .phases-container {
+          grid-template-columns: 1fr;
+        }
+
+        .container {
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Hero Section -->
+      <div class="hero">
+        <h1>🚀 JavaScript Developer Roadmap</h1>
+        <p class="subtitle">Master the language that powers the modern web</p>
+        <div class="badges">
+          <span class="badge">💻 Frontend</span>
+          <span class="badge">🔧 Backend</span>
+          <span class="badge">📱 Mobile</span>
+          <span class="badge">🌐 Full Stack</span>
+          <span class="badge">⚡ Performance</span>
+        </div>
+      </div>
+
+      <!-- Version Info -->
+      <div class="js-version-info">
+        <h3>🔥 Modern JavaScript</h3>
+        <p>Learning ES2024+ with the latest features and best practices</p>
+      </div>
+
+      <!-- Progress Tracker -->
+      <div class="progress-tracker section" id="progress">
+        <div class="progress-header">
+          <h2>📊 Your JavaScript Journey</h2>
+          <p>Track your progress to becoming a JavaScript expert</p>
+        </div>
+
+        <div class="overall-progress">
+          <h3>Overall Progress</h3>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              id="overallProgress"
+              style="width: 0%"
+            ></div>
+          </div>
+          <div class="progress-text">
+            <span id="progressText">0% Complete</span> •
+            <span id="completedTasks">0</span> of
+            <span id="totalTasks">0</span> concepts mastered
+          </div>
+        </div>
+
+        <div class="stats-section">
+          <div class="stat-card">
+            <div class="stat-number" id="hoursSpent">0</div>
+            <div class="stat-label">Hours Coding</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="conceptsLearned">0</div>
+            <div class="stat-label">Concepts Learned</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="projectsBuilt">0</div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="frameworksLearned">0</div>
+            <div class="stat-label">Frameworks</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Learning Phases -->
+      <div class="section" id="phases">
+        <h2 class="section-title">🎯 JavaScript Learning Path</h2>
+        <div class="phases-container" id="phasesContainer">
+          <!-- Phases will be dynamically generated -->
+        </div>
+      </div>
+
+      <!-- Hands-on Projects -->
+      <div class="section" id="projects">
+        <div class="projects-section">
+          <h2 class="section-title">🛠️ Practice Projects</h2>
+          <div class="projects-grid">
+            <div
+              class="project-card"
+              onclick="showProjectDetails('calculator')"
+            >
+              <h4>🧮 Calculator App</h4>
+              <p>
+                Build a fully functional calculator with JavaScript operations
+                and DOM manipulation.
+              </p>
+              <span class="difficulty">Beginner</span>
+            </div>
+            <div class="project-card" onclick="showProjectDetails('todolist')">
+              <h4>✅ Todo List</h4>
+              <p>
+                Create an interactive todo list with add, edit, delete, and
+                local storage functionality.
+              </p>
+              <span class="difficulty">Beginner</span>
+            </div>
+            <div class="project-card" onclick="showProjectDetails('weather')">
+              <h4>🌤️ Weather App</h4>
+              <p>
+                Fetch weather data from APIs and display beautiful weather
+                information.
+              </p>
+              <span class="difficulty">Intermediate</span>
+            </div>
+            <div class="project-card" onclick="showProjectDetails('ecommerce')">
+              <h4>🛒 E-commerce Site</h4>
+              <p>
+                Build a complete shopping cart with products, cart management,
+                and checkout.
+              </p>
+              <span class="difficulty">Intermediate</span>
+            </div>
+            <div class="project-card" onclick="showProjectDetails('chatapp')">
+              <h4>💬 Real-time Chat</h4>
+              <p>
+                Create a real-time chat application using WebSockets and modern
+                JavaScript.
+              </p>
+              <span class="difficulty">Advanced</span>
+            </div>
+            <div class="project-card" onclick="showProjectDetails('dashboard')">
+              <h4>📊 Analytics Dashboard</h4>
+              <p>
+                Build an interactive dashboard with charts, data visualization,
+                and real-time updates.
+              </p>
+              <span class="difficulty">Advanced</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Frameworks & Libraries -->
+      <div class="section" id="frameworks">
+        <div class="frameworks-section">
+          <h2 class="section-title">🔧 Frameworks & Libraries</h2>
+          <div class="frameworks-grid">
+            <div class="framework-card" onclick="showFrameworkDetails('react')">
+              <div class="framework-logo">⚛️</div>
+              <h4>React</h4>
+              <p>Build user interfaces with components and virtual DOM</p>
+            </div>
+            <div class="framework-card" onclick="showFrameworkDetails('vue')">
+              <div class="framework-logo">💚</div>
+              <h4>Vue.js</h4>
+              <p>Progressive framework for building user interfaces</p>
+            </div>
+            <div
+              class="framework-card"
+              onclick="showFrameworkDetails('angular')"
+            >
+              <div class="framework-logo">🔺</div>
+              <h4>Angular</h4>
+              <p>Platform for building mobile and desktop web applications</p>
+            </div>
+            <div
+              class="framework-card"
+              onclick="showFrameworkDetails('nodejs')"
+            >
+              <div class="framework-logo">🟢</div>
+              <h4>Node.js</h4>
+              <p>JavaScript runtime for building server-side applications</p>
+            </div>
+            <div
+              class="framework-card"
+              onclick="showFrameworkDetails('express')"
+            >
+              <div class="framework-logo">🚂</div>
+              <h4>Express.js</h4>
+              <p>Fast, minimalist web framework for Node.js</p>
+            </div>
+            <div
+              class="framework-card"
+              onclick="showFrameworkDetails('nextjs')"
+            >
+              <div class="framework-logo">▲</div>
+              <h4>Next.js</h4>
+              <p>React framework for production-ready applications</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Navigation -->
+    <div class="floating-nav">
+      <a href="#progress" class="nav-item active" data-section="progress">
+        <span class="nav-tooltip">Progress</span>
+      </a>
+      <a href="#phases" class="nav-item" data-section="phases">
+        <span class="nav-tooltip">Learning</span>
+      </a>
+      <a href="#projects" class="nav-item" data-section="projects">
+        <span class="nav-tooltip">Projects</span>
+      </a>
+      <a href="#frameworks" class="nav-item" data-section="frameworks">
+        <span class="nav-tooltip">Frameworks</span>
+      </a>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="detailModal">
+      <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()">&times;</button>
+        <div id="modalContent">
+          <!-- Dynamic content will be inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // JavaScript learning phases
+      const phases = [
+        {
+          id: 1,
+          title: "JavaScript Fundamentals",
+          duration: "2-3 weeks",
+          tasks: [
+            "Understand variables (let, const, var)",
+            "Learn data types (string, number, boolean, etc.)",
+            "Master operators and expressions",
+            "Practice with conditionals (if/else, switch)",
+            "Learn loops (for, while, do-while)",
+            "Understand functions and function expressions",
+            "Practice with arrays and array methods",
+            "Learn about objects and object properties",
+          ],
+        },
+        {
+          id: 2,
+          title: "DOM Manipulation",
+          duration: "2-3 weeks",
+          tasks: [
+            "Understand the Document Object Model",
+            "Learn to select elements (getElementById, querySelector)",
+            "Master element manipulation (innerHTML, textContent)",
+            "Practice with event handling and listeners",
+            "Learn about event propagation and delegation",
+            "Create and modify DOM elements dynamically",
+            "Style elements with JavaScript",
+            "Build interactive web pages",
+          ],
+        },
+        {
+          id: 3,
+          title: "ES6+ Modern Features",
+          duration: "3-4 weeks",
+          tasks: [
+            "Master arrow functions and their syntax",
+            "Learn template literals and string interpolation",
+            "Understand destructuring (arrays and objects)",
+            "Practice with spread and rest operators",
+            "Learn about modules (import/export)",
+            "Understand classes and inheritance",
+            "Master const/let vs var differences",
+            "Practice with enhanced object literals",
+          ],
+        },
+        {
+          id: 4,
+          title: "Asynchronous JavaScript",
+          duration: "3-4 weeks",
+          tasks: [
+            "Understand the event loop and call stack",
+            "Learn callbacks and callback patterns",
+            "Master Promises and Promise chaining",
+            "Practice with async/await syntax",
+            "Learn error handling in async code",
+            "Understand Promise.all, Promise.race",
+            "Practice with fetch API and HTTP requests",
+            "Handle loading states and error scenarios",
+          ],
+        },
+        {
+          id: 5,
+          title: "Advanced Functions",
+          duration: "2-3 weeks",
+          tasks: [
+            "Understand higher-order functions",
+            "Master array methods (map, filter, reduce)",
+            "Learn about closures and lexical scope",
+            "Practice with function binding (call, apply, bind)",
+            "Understand immediately invoked function expressions (IIFE)",
+            "Learn about function currying",
+            "Master recursion and recursive patterns",
+            "Practice with functional programming concepts",
+          ],
+        },
+        {
+          id: 6,
+          title: "Object-Oriented Programming",
+          duration: "3-4 weeks",
+          tasks: [
+            "Understand prototypes and prototype chain",
+            "Learn constructor functions and new keyword",
+            "Master ES6 classes and class syntax",
+            "Practice with inheritance and super keyword",
+            "Learn about static methods and properties",
+            "Understand encapsulation and private fields",
+            "Practice with polymorphism concepts",
+            "Learn design patterns (Factory, Singleton, Observer)",
+          ],
+        },
+        {
+          id: 7,
+          title: "Browser APIs & Web APIs",
+          duration: "2-3 weeks",
+          tasks: [
+            "Learn Local Storage and Session Storage",
+            "Master Geolocation API",
+            "Practice with Web Workers",
+            "Understand Service Workers and PWAs",
+            "Learn about WebSocket connections",
+            "Practice with Canvas API for graphics",
+            "Understand Intersection Observer",
+            "Learn about Notification API",
+          ],
+        },
+        {
+          id: 8,
+          title: "Testing & Debugging",
+          duration: "2-3 weeks",
+          tasks: [
+            "Learn debugging with browser dev tools",
+            "Understand console methods and logging",
+            "Practice with unit testing (Jest)",
+            "Learn about test-driven development (TDD)",
+            "Master integration testing concepts",
+            "Practice with mocking and spying",
+            "Learn error tracking and monitoring",
+            "Understand performance profiling",
+          ],
+        },
+        {
+          id: 9,
+          title: "Performance & Optimization",
+          duration: "2-3 weeks",
+          tasks: [
+            "Learn about JavaScript engine optimization",
+            "Understand memory management and garbage collection",
+            "Practice with code splitting and lazy loading",
+            "Learn about bundling and tree shaking",
+            "Master performance measurement tools",
+            "Understand critical rendering path",
+            "Practice with image and asset optimization",
+            "Learn about caching strategies",
+          ],
+        },
+      ];
+
+      // Project details
+      const projectDetails = {
+        calculator: {
+          title: "🧮 Interactive Calculator",
+          description:
+            "Build a fully functional calculator with JavaScript operations, DOM manipulation, and error handling.",
+          skills: [
+            "DOM Manipulation",
+            "Event Handling",
+            "Functions",
+            "Error Handling",
+          ],
+          codeExample: `// Calculator App
+class Calculator {
+    constructor() {
+        this.display = document.getElementById('display');
+        this.currentInput = '0';
+        this.operator = null;
+        this.previousInput = null;
+    }
+
+    updateDisplay() {
+        this.display.textContent = this.currentInput;
+    }
+
+    inputNumber(number) {
+        if (this.currentInput === '0') {
+            this.currentInput = number;
+        } else {
+            this.currentInput += number;
+        }
+        this.updateDisplay();
+    }
+
+    inputOperator(nextOperator) {
+        const inputValue = parseFloat(this.currentInput);
+
+        if (this.previousInput === null) {
+            this.previousInput = inputValue;
+        } else if (this.operator) {
+            const result = this.calculate();
+            this.currentInput = String(result);
+            this.previousInput = result;
+            this.updateDisplay();
+        }
+
+        this.operator = nextOperator;
+        this.currentInput = '0';
+    }
+
+    calculate() {
+        const prev = this.previousInput;
+        const current = parseFloat(this.currentInput);
+
+        switch (this.operator) {
+            case '+': return prev + current;
+            case '-': return prev - current;
+            case '*': return prev * current;
+            case '/': return current !== 0 ? prev / current : 0;
+            default: return current;
+        }
+    }
+}
+
+const calculator = new Calculator();`,
+        },
+        todolist: {
+          title: "✅ Interactive Todo List",
+          description:
+            "Create a dynamic todo list with CRUD operations, local storage, and filtering capabilities.",
+          skills: [
+            "Arrays",
+            "Local Storage",
+            "Event Delegation",
+            "State Management",
+          ],
+          codeExample: `// Todo List App
+class TodoApp {
+    constructor() {
+        this.todos = JSON.parse(localStorage.getItem('todos')) || [];
+        this.filter = 'all';
+        this.render();
+    }
+
+    addTodo(text) {
+        const todo = {
+            id: Date.now(),
+            text: text.trim(),
+            completed: false,
+            createdAt: new Date().toISOString()
+        };
+        
+        this.todos.push(todo);
+        this.saveTodos();
+        this.render();
+    }
+
+    toggleTodo(id) {
+        this.todos = this.todos.map(todo =>
+            todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        );
+        this.saveTodos();
+        this.render();
+    }
+
+    deleteTodo(id) {
+        this.todos = this.todos.filter(todo => todo.id !== id);
+        this.saveTodos();
+        this.render();
+    }
+
+    saveTodos() {
+        localStorage.setItem('todos', JSON.stringify(this.todos));
+    }
+
+    render() {
+        const todoList = document.getElementById('todo-list');
+        const filteredTodos = this.getFilteredTodos();
+        
+        todoList.innerHTML = filteredTodos.map(todo => \`
+            <li class="todo-item \${todo.completed ? 'completed' : ''}">
+                <input type="checkbox" \${todo.completed ? 'checked' : ''} 
+                       onchange="todoApp.toggleTodo(\${todo.id})">
+                <span>\${todo.text}</span>
+                <button onclick="todoApp.deleteTodo(\${todo.id})">Delete</button>
+            </li>
+        \`).join('');
+    }
+}`,
+        },
+        weather: {
+          title: "🌤️ Weather Dashboard",
+          description:
+            "Fetch and display weather data from APIs with geolocation and beautiful UI components.",
+          skills: [
+            "Fetch API",
+            "Promises",
+            "Geolocation",
+            "Error Handling",
+            "JSON",
+          ],
+          codeExample: `// Weather App
+class WeatherApp {
+    constructor() {
+        this.apiKey = 'YOUR_API_KEY';
+        this.baseUrl = 'https://api.openweathermap.org/data/2.5';
+        this.init();
+    }
+
+    async init() {
+        try {
+            const position = await this.getCurrentPosition();
+            const weather = await this.fetchWeatherByCoords(
+                position.coords.latitude, 
+                position.coords.longitude
+            );
+            this.displayWeather(weather);
+        } catch (error) {
+            console.error('Error getting weather:', error);
+            this.showError('Unable to get weather data');
+        }
+    }
+
+    async fetchWeatherByCoords(lat, lon) {
+        const response = await fetch(
+            \`\${this.baseUrl}/weather?lat=\${lat}&lon=\${lon}&appid=\${this.apiKey}&units=metric\`
+        );
+        
+        if (!response.ok) {
+            throw new Error('Weather data not available');
+        }
+        
+        return response.json();
+    }
+
+    displayWeather(weather) {
+        const weatherContainer = document.getElementById('weather-container');
+        weatherContainer.innerHTML = \`
+            <div class="weather-card">
+                <h2>\${weather.name}, \${weather.sys.country}</h2>
+                <div class="temperature">\${Math.round(weather.main.temp)}°C</div>
+                <div class="description">\${weather.weather[0].description}</div>
+            </div>
+        \`;
+    }
+}`,
+        },
+        ecommerce: {
+          title: "🛒 E-commerce Shopping Cart",
+          description:
+            "Build a complete shopping experience with product catalog, cart management, and checkout process.",
+          skills: [
+            "State Management",
+            "Local Storage",
+            "Form Validation",
+            "Event Handling",
+          ],
+          codeExample: `// E-commerce App
+class EcommerceApp {
+    constructor() {
+        this.products = [];
+        this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+        this.loadProducts();
+    }
+
+    addToCart(productId) {
+        const product = this.products.find(p => p.id === productId);
+        const existingItem = this.cart.find(item => item.id === productId);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            this.cart.push({ ...product, quantity: 1 });
+        }
+
+        this.saveCart();
+        this.renderCart();
+    }
+
+    getCartTotal() {
+        return this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    }
+
+    renderCart() {
+        const cartContainer = document.getElementById('cart');
+        cartContainer.innerHTML = \`
+            <h2>Shopping Cart</h2>
+            \${this.cart.map(item => \`
+                <div class="cart-item">
+                    <span>\${item.name}</span>
+                    <span>$\${(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+            \`).join('')}
+            <div class="cart-total">
+                Total: $\${this.getCartTotal().toFixed(2)}
+            </div>
+        \`;
+    }
+}`,
+        },
+        chatapp: {
+          title: "💬 Real-time Chat Application",
+          description:
+            "Create a real-time chat application using WebSockets with multiple rooms and user management.",
+          skills: [
+            "WebSockets",
+            "Event Handling",
+            "Real-time Data",
+            "User Management",
+          ],
+          codeExample: `// Chat Application
+class ChatApp {
+    constructor() {
+        this.socket = null;
+        this.currentUser = null;
+        this.currentRoom = 'general';
+        this.messages = [];
+        this.connect();
+    }
+
+    connect() {
+        this.socket = new WebSocket('ws://localhost:8080');
+        
+        this.socket.onopen = () => {
+            console.log('Connected to chat server');
+            this.joinRoom(this.currentRoom);
+        };
+
+        this.socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            this.handleMessage(data);
+        };
+
+        this.socket.onclose = () => {
+            console.log('Disconnected from chat server');
+            setTimeout(() => this.connect(), 3000);
+        };
+    }
+
+    sendMessage(text) {
+        if (!text.trim() || !this.socket) return;
+
+        const message = {
+            type: 'message',
+            text: text.trim(),
+            room: this.currentRoom,
+            timestamp: new Date().toISOString()
+        };
+
+        this.socket.send(JSON.stringify(message));
+    }
+
+    renderMessages() {
+        const messagesContainer = document.getElementById('messages');
+        messagesContainer.innerHTML = this.messages.map(msg => \`
+            <div class="message">
+                <span class="username">\${msg.username}</span>
+                <span class="text">\${msg.text}</span>
+            </div>
+        \`).join('');
+    }
+}`,
+        },
+        dashboard: {
+          title: "📊 Analytics Dashboard",
+          description:
+            "Build an interactive dashboard with charts, data visualization, and real-time updates using Chart.js.",
+          skills: [
+            "Chart.js",
+            "Data Visualization",
+            "API Integration",
+            "Real-time Updates",
+          ],
+          codeExample: `// Analytics Dashboard
+class AnalyticsDashboard {
+    constructor() {
+        this.charts = {};
+        this.data = { sales: [], users: [], revenue: [] };
+        this.init();
+    }
+
+    async init() {
+        await this.loadData();
+        this.createCharts();
+        this.startRealTimeUpdates();
+    }
+
+    createCharts() {
+        // Sales Chart
+        const salesCtx = document.getElementById('salesChart').getContext('2d');
+        this.charts.sales = new Chart(salesCtx, {
+            type: 'line',
+            data: {
+                labels: this.data.sales.map(item => item.month),
+                datasets: [{
+                    label: 'Monthly Sales',
+                    data: this.data.sales.map(item => item.value),
+                    borderColor: '#f093fb',
+                    backgroundColor: 'rgba(240, 147, 251, 0.1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Sales Overview' }
+                }
+            }
+        });
+    }
+
+    startRealTimeUpdates() {
+        setInterval(() => {
+            this.updateCharts();
+        }, 5000);
+    }
+
+    updateCharts() {
+        // Update with new data
+        this.charts.sales.update();
+    }
+}`,
+        },
+      };
+
+      // Framework details
+      const frameworkDetails = {
+        react: {
+          title: "⚛️ React",
+          description:
+            "A JavaScript library for building user interfaces with a component-based architecture.",
+          skills: ["Components", "JSX", "State Management", "Hooks", "Props"],
+          pros: [
+            "Large community",
+            "Great performance",
+            "Flexible",
+            "Strong ecosystem",
+          ],
+          cons: ["Steep learning curve", "Frequent updates", "Just a library"],
+          links: ["https://reactjs.org/", "https://create-react-app.dev/"],
+        },
+        vue: {
+          title: "💚 Vue.js",
+          description:
+            "The Progressive JavaScript Framework for building user interfaces and single-page applications.",
+          skills: [
+            "Templates",
+            "Directives",
+            "Computed Properties",
+            "Vuex",
+            "Vue Router",
+          ],
+          pros: [
+            "Easy to learn",
+            "Great documentation",
+            "Flexible",
+            "Small size",
+          ],
+          cons: ["Smaller community", "Less job market", "Fewer resources"],
+          links: ["https://vuejs.org/", "https://cli.vuejs.org/"],
+        },
+        angular: {
+          title: "🔺 Angular",
+          description:
+            "A platform and framework for building single-page client applications using HTML and TypeScript.",
+          skills: [
+            "TypeScript",
+            "Services",
+            "Dependency Injection",
+            "RxJS",
+            "Angular CLI",
+          ],
+          pros: [
+            "Complete framework",
+            "Strong typing",
+            "Great tooling",
+            "Enterprise ready",
+          ],
+          cons: ["Complex", "Heavy", "Steep learning curve", "Verbose"],
+          links: ["https://angular.io/", "https://cli.angular.io/"],
+        },
+        nodejs: {
+          title: "🟢 Node.js",
+          description:
+            "JavaScript runtime built on Chrome's V8 JavaScript engine for building server-side applications.",
+          skills: ["Server-side JS", "NPM", "Modules", "File System", "HTTP"],
+          pros: [
+            "Same language frontend/backend",
+            "Fast development",
+            "Large ecosystem",
+            "Scalable",
+          ],
+          cons: [
+            "Single-threaded",
+            "Callback complexity",
+            "Not CPU intensive",
+            "Rapid changes",
+          ],
+          links: ["https://nodejs.org/", "https://www.npmjs.com/"],
+        },
+        express: {
+          title: "🚂 Express.js",
+          description:
+            "Fast, unopinionated, minimalist web framework for Node.js applications.",
+          skills: [
+            "Routing",
+            "Middleware",
+            "REST APIs",
+            "Template Engines",
+            "Error Handling",
+          ],
+          pros: ["Simple", "Flexible", "Large community", "Minimal setup"],
+          cons: [
+            "Minimal structure",
+            "Manual setup",
+            "Security considerations",
+            "Callback hell",
+          ],
+          links: [
+            "https://expressjs.com/",
+            "https://github.com/expressjs/express",
+          ],
+        },
+        nextjs: {
+          title: "▲ Next.js",
+          description:
+            "The React Framework for Production with hybrid static & server rendering, smart bundling, and more.",
+          skills: [
+            "SSR/SSG",
+            "API Routes",
+            "File-based Routing",
+            "Performance",
+            "SEO",
+          ],
+          pros: ["Great performance", "SEO friendly", "Full-stack", "Great DX"],
+          cons: [
+            "Opinionated",
+            "Learning curve",
+            "Vendor lock-in",
+            "Complex routing",
+          ],
+          links: ["https://nextjs.org/", "https://github.com/vercel/next.js"],
+        },
+      };
+
+      // State management
+      let completedTasks = new Set();
+      let userStats = {
+        hoursSpent: 0,
+        conceptsLearned: 0,
+        projectsBuilt: 0,
+        frameworksLearned: 0,
+      };
+
+      // Initialize the application
+      function init() {
+        userStats = {
+          hoursSpent: 0,
+          conceptsLearned: 0,
+          projectsBuilt: 0,
+          frameworksLearned: 0,
+        };
+
+        renderPhases();
+        loadProgress();
+        updateStats();
+        setupIntersectionObserver();
+        setupNavigation();
+
+        setTimeout(() => {
+          updateOverallProgress();
+        }, 500);
+      }
+
+      // Render all phases
+      function renderPhases() {
+        const container = document.getElementById("phasesContainer");
+        container.innerHTML = "";
+
+        phases.forEach((phase) => {
+          const phaseCard = createPhaseCard(phase);
+          container.appendChild(phaseCard);
+        });
+
+        updateTaskCounts();
+      }
+
+      // Create a phase card
+      function createPhaseCard(phase) {
+        const card = document.createElement("div");
+        card.className = `phase-card phase-${phase.id}`;
+        card.innerHTML = `
+                <div class="phase-header">
+                    <h3 class="phase-title">Phase ${phase.id}: ${
+          phase.title
+        }</h3>
+                    <span class="phase-duration">${phase.duration}</span>
+                </div>
+                <ul class="checklist">
+                    ${phase.tasks
+                      .map(
+                        (task, index) => `
+                        <li class="checklist-item" data-phase="${phase.id}" data-task="${index}">
+                            <div class="checkbox"></div>
+                            <span class="checklist-text">${task}</span>
+                        </li>
+                    `
+                      )
+                      .join("")}
+                </ul>
+            `;
+
+        const checklistItems = card.querySelectorAll(".checklist-item");
+        checklistItems.forEach((item) => {
+          item.addEventListener("click", () => toggleTask(item));
+        });
+
+        return card;
+      }
+
+      // Toggle task completion
+      function toggleTask(item) {
+        const phase = item.dataset.phase;
+        const task = item.dataset.task;
+        const taskId = `${phase}-${task}`;
+
+        const checkbox = item.querySelector(".checkbox");
+        const isCompleted = completedTasks.has(taskId);
+
+        if (isCompleted) {
+          completedTasks.delete(taskId);
+          checkbox.classList.remove("checked");
+          item.classList.remove("completed");
+          userStats.hoursSpent = Math.max(0, userStats.hoursSpent - 3);
+          userStats.conceptsLearned = Math.max(
+            0,
+            userStats.conceptsLearned - 1
+          );
+        } else {
+          completedTasks.add(taskId);
+          checkbox.classList.add("checked");
+          item.classList.add("completed");
+          userStats.hoursSpent += 3;
+          userStats.conceptsLearned += 1;
+
+          const phaseData = phases.find((p) => p.id == phase);
+          if (phaseData) {
+            const phaseTasksCompleted = phaseData.tasks.filter((_, index) =>
+              completedTasks.has(`${phase}-${index}`)
+            ).length;
+
+            if (phaseTasksCompleted === phaseData.tasks.length) {
+              userStats.projectsBuilt += 1;
+              userStats.frameworksLearned += Math.floor(Math.random() * 2) + 1;
+            }
+          }
+
+          showCelebration(item);
+        }
+
+        updateOverallProgress();
+        updateStats();
+        saveProgress();
+      }
+
+      // Show celebration effect
+      function showCelebration(item) {
+        const rect = item.getBoundingClientRect();
+        const celebration = document.createElement("div");
+        celebration.innerHTML = "🎉";
+        celebration.style.cssText = `
+                position: fixed;
+                left: ${rect.left + rect.width / 2}px;
+                top: ${rect.top + rect.height / 2}px;
+                font-size: 2rem;
+                pointer-events: none;
+                z-index: 1000;
+                animation: celebrationPop 1s ease-out forwards;
+            `;
+
+        const style = document.createElement("style");
+        style.textContent = `
+                @keyframes celebrationPop {
+                    0% { transform: scale(0) translateY(0); opacity: 1; }
+                    50% { transform: scale(1.5) translateY(-20px); opacity: 1; }
+                    100% { transform: scale(0) translateY(-40px); opacity: 0; }
+                }
+            `;
+        document.head.appendChild(style);
+        document.body.appendChild(celebration);
+
+        setTimeout(() => {
+          document.body.removeChild(celebration);
+          document.head.removeChild(style);
+        }, 1000);
+      }
+
+      // Update overall progress
+      function updateOverallProgress() {
+        const totalTasks = phases.reduce(
+          (sum, phase) => sum + phase.tasks.length,
+          0
+        );
+        const completed = completedTasks.size;
+        const percentage =
+          totalTasks > 0 ? Math.round((completed / totalTasks) * 100) : 0;
+
+        document.getElementById(
+          "overallProgress"
+        ).style.width = `${percentage}%`;
+        document.getElementById(
+          "progressText"
+        ).textContent = `${percentage}% Complete`;
+        document.getElementById("completedTasks").textContent = completed;
+        document.getElementById("totalTasks").textContent = totalTasks;
+      }
+
+      // Update task counts
+      function updateTaskCounts() {
+        const totalTasks = phases.reduce(
+          (sum, phase) => sum + phase.tasks.length,
+          0
+        );
+        document.getElementById("totalTasks").textContent = totalTasks;
+      }
+
+      // Update statistics
+      function updateStats() {
+        userStats.hoursSpent = Math.max(0, userStats.hoursSpent);
+        userStats.conceptsLearned = Math.max(0, userStats.conceptsLearned);
+        userStats.projectsBuilt = Math.max(0, userStats.projectsBuilt);
+        userStats.frameworksLearned = Math.max(0, userStats.frameworksLearned);
+
+        document.getElementById("hoursSpent").textContent =
+          userStats.hoursSpent;
+        document.getElementById("conceptsLearned").textContent =
+          userStats.conceptsLearned;
+        document.getElementById("projectsBuilt").textContent =
+          userStats.projectsBuilt;
+        document.getElementById("frameworksLearned").textContent =
+          userStats.frameworksLearned;
+      }
+
+      // Show project details in modal
+      function showProjectDetails(projectKey) {
+        const project = projectDetails[projectKey];
+        if (!project) return;
+
+        const modalContent = document.getElementById("modalContent");
+        modalContent.innerHTML = `
+                <h2>${project.title}</h2>
+                <p style="margin-bottom: 20px; color: #4a5568; font-size: 1.1rem;">${
+                  project.description
+                }</p>
+                
+                <h3 style="color: #2d3748; margin-bottom: 15px;">🛠️ Skills Required</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px;">
+                    ${project.skills
+                      .map(
+                        (skill) => `
+                        <span style="
+                            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                            color: white;
+                            padding: 6px 14px;
+                            border-radius: 15px;
+                            font-size: 0.85rem;
+                            font-weight: 600;
+                        ">${skill}</span>
+                    `
+                      )
+                      .join("")}
+                </div>
+                
+                <h3 style="color: #2d3748; margin-bottom: 15px;">💻 Code Example</h3>
+                <div class="code-snippet">${project.codeExample}</div>
+            `;
+
+        document.getElementById("detailModal").style.display = "block";
+      }
+
+      // Show framework details in modal
+      function showFrameworkDetails(frameworkKey) {
+        const framework = frameworkDetails[frameworkKey];
+        if (!framework) return;
+
+        const modalContent = document.getElementById("modalContent");
+        modalContent.innerHTML = `
+                <h2>${framework.title}</h2>
+                <p style="margin-bottom: 20px; color: #4a5568; font-size: 1.1rem;">${
+                  framework.description
+                }</p>
+                
+                <h3 style="color: #2d3748; margin-bottom: 15px;">🛠️ Core Skills</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px;">
+                    ${framework.skills
+                      .map(
+                        (skill) => `
+                        <span style="
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            color: white;
+                            padding: 6px 14px;
+                            border-radius: 15px;
+                            font-size: 0.85rem;
+                            font-weight: 600;
+                        ">${skill}</span>
+                    `
+                      )
+                      .join("")}
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
+                    <div>
+                        <h4 style="color: #2d3748; margin-bottom: 10px;">✅ Pros</h4>
+                        <ul>
+                            ${framework.pros
+                              .map(
+                                (pro) =>
+                                  `<li style="color: #48bb78; margin: 5px 0;">• ${pro}</li>`
+                              )
+                              .join("")}
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #2d3748; margin-bottom: 10px;">⚠️ Cons</h4>
+                        <ul>
+                            ${framework.cons
+                              .map(
+                                (con) =>
+                                  `<li style="color: #f56565; margin: 5px 0;">• ${con}</li>`
+                              )
+                              .join("")}
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3 style="color: #2d3748; margin-bottom: 15px;">🔗 Learn More</h3>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    ${framework.links
+                      .map(
+                        (link) => `
+                        <a href="${link}" target="_blank" style="
+                            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                            color: white;
+                            padding: 8px 16px;
+                            border-radius: 20px;
+                            text-decoration: none;
+                            font-size: 0.9rem;
+                            transition: transform 0.3s ease;
+                        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            Visit Resource
+                        </a>
+                    `
+                      )
+                      .join("")}
+                </div>
+            `;
+
+        document.getElementById("detailModal").style.display = "block";
+      }
+
+      // Close modal
+      function closeModal() {
+        document.getElementById("detailModal").style.display = "none";
+      }
+
+      // Setup intersection observer for scroll animations
+      function setupIntersectionObserver() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll(".section").forEach((section) => {
+          observer.observe(section);
+        });
+      }
+
+      // Setup navigation
+      function setupNavigation() {
+        const navItems = document.querySelectorAll(".nav-item");
+
+        navItems.forEach((item) => {
+          item.addEventListener("click", (e) => {
+            e.preventDefault();
+            const targetId = item.getAttribute("href").substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+
+              navItems.forEach((nav) => nav.classList.remove("active"));
+              item.classList.add("active");
+            }
+          });
+        });
+
+        window.addEventListener("scroll", () => {
+          const sections = document.querySelectorAll(".section");
+          const scrollPos = window.scrollY + 100;
+
+          sections.forEach((section) => {
+            const top = section.offsetTop;
+            const bottom = top + section.offsetHeight;
+            const id = section.getAttribute("id");
+
+            if (scrollPos >= top && scrollPos < bottom) {
+              navItems.forEach((nav) => nav.classList.remove("active"));
+              const activeNav = document.querySelector(
+                `[data-section="${id}"]`
+              );
+              if (activeNav) activeNav.classList.add("active");
+            }
+          });
+        });
+      }
+
+      // Save progress to memory
+      function saveProgress() {
+        const progressData = {
+          completedTasks: Array.from(completedTasks),
+          userStats: userStats,
+          lastUpdated: new Date().toISOString(),
+        };
+
+        window.progressData = progressData;
+      }
+
+      // Load progress from memory
+      function loadProgress() {
+        completedTasks = new Set();
+        userStats = {
+          hoursSpent: 0,
+          conceptsLearned: 0,
+          projectsBuilt: 0,
+          frameworksLearned: 0,
+        };
+
+        const saved = window.progressData;
+
+        if (saved && saved.completedTasks) {
+          completedTasks = new Set(saved.completedTasks);
+          userStats = { ...userStats, ...saved.userStats };
+
+          Object.keys(userStats).forEach((key) => {
+            if (typeof userStats[key] === "number") {
+              userStats[key] = Math.max(0, userStats[key]);
+            }
+          });
+
+          setTimeout(() => {
+            completedTasks.forEach((taskId) => {
+              const [phase, task] = taskId.split("-");
+              const item = document.querySelector(
+                `[data-phase="${phase}"][data-task="${task}"]`
+              );
+              if (item) {
+                const checkbox = item.querySelector(".checkbox");
+                checkbox.classList.add("checked");
+                item.classList.add("completed");
+              }
+            });
+            updateOverallProgress();
+            updateStats();
+          }, 100);
+        }
+      }
+
+      // Add keyboard shortcuts
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeModal();
+        }
+      });
+
+      // Add click outside modal to close
+      document.getElementById("detailModal").addEventListener("click", (e) => {
+        if (e.target.id === "detailModal") {
+          closeModal();
+        }
+      });
+
+      // Auto-save progress periodically
+      setInterval(saveProgress, 30000);
+
+      // Initialize when DOM is loaded
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+
+      // Add parallax effect to hero section
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector(".hero");
+        if (hero) {
+          hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+          hero.style.opacity = Math.max(0, 1 - scrolled / 600);
+        }
+      });
+
+      console.log("🚀 JavaScript Developer Roadmap initialized successfully!");
+      console.log(
+        "💡 Tip: Click on concepts to mark them as learned and track your JavaScript mastery!"
+      );
+    </script>
+  </body>
+</html>
