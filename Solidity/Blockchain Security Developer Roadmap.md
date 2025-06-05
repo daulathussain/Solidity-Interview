@@ -429,20 +429,3 @@ Remember: **Security is not a destination, but a journey.** Always assume that:
 
 ---
 
-<div align="center">
-
-## 🎉 Congratulations!
-
-*You're now equipped with a comprehensive roadmap to become a Blockchain Security Developer*
-
-**Remember:** The blockchain space evolves rapidly. Stay curious, keep learning, and always prioritize security in your development practices.
-
----
-
-[![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge)](https://github.com)
-[![Blockchain](https://img.shields.io/badge/Blockchain-Security-blue?style=for-the-badge&logo=ethereum)](https://ethereum.org)
-[![Developer](https://img.shields.io/badge/Developer-Roadmap-green?style=for-the-badge&logo=roadmapdotsh)](https://roadmap.sh)
-
-*Happy coding and stay secure! 🔐*
-
-</div>
