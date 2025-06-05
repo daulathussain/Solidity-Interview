@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📜 Solidity Developer Roadmap</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 60px 0;
+        color: white;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .hero .subtitle {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        margin-bottom: 30px;
+        animation: fadeInUp 1s ease-out 0.2s both;
+      }
+
+      .badges {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        animation: fadeInUp 1s ease-out 0.4s both;
+      }
+
+      .badge {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 25px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .badge:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .progress-tracker {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        margin: 40px 0;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        animation: slideInUp 0.8s ease-out;
+      }
+
+      .progress-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .progress-header h2 {
+        color: #4a5568;
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .overall-progress {
+        background: #f7fafc;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 30px;
+      }
+
+      .progress-bar {
+        background: #e2e8f0;
+        border-radius: 10px;
+        height: 20px;
+        overflow: hidden;
+        margin-bottom: 15px;
+      }
+
+      .progress-fill {
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        height: 100%;
+        border-radius: 10px;
+        transition: width 0.5s ease;
+        position: relative;
+      }
+
+      .progress-fill::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        animation: shimmer 2s infinite;
+      }
+
+      .progress-text {
+        text-align: center;
+        font-weight: 600;
+        color: #4a5568;
+      }
+
+      .phases-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+      }
+
+      .phase-card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border-left: 5px solid;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .phase-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--phase-color), transparent);
+      }
+
+      .phase-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .phase-1 {
+        --phase-color: #ff6b6b;
+        border-left-color: #ff6b6b;
+      }
+      .phase-2 {
+        --phase-color: #4ecdc4;
+        border-left-color: #4ecdc4;
+      }
+      .phase-3 {
+        --phase-color: #45b7d1;
+        border-left-color: #45b7d1;
+      }
+      .phase-4 {
+        --phase-color: #96ceb4;
+        border-left-color: #96ceb4;
+      }
+      .phase-5 {
+        --phase-color: #ffeaa7;
+        border-left-color: #ffeaa7;
+      }
+      .phase-6 {
+        --phase-color: #dda0dd;
+        border-left-color: #dda0dd;
+      }
+      .phase-7 {
+        --phase-color: #98d8c8;
+        border-left-color: #98d8c8;
+      }
+      .phase-8 {
+        --phase-color: #f093fb;
+        border-left-color: #f093fb;
+      }
+
+      .phase-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .phase-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2d3748;
+      }
+
+      .phase-duration {
+        background: var(--phase-color);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .checklist {
+        list-style: none;
+      }
+
+      .checklist-item {
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
+        padding: 12px;
+        background: #f8fafc;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .checklist-item:hover {
+        background: #edf2f7;
+        transform: translateX(5px);
+      }
+
+      .checkbox {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #cbd5e0;
+        border-radius: 4px;
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .checkbox.checked {
+        background: var(--phase-color);
+        border-color: var(--phase-color);
+      }
+
+      .checkbox.checked::after {
+        content: "✓";
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      .checklist-text {
+        flex: 1;
+        color: #4a5568;
+        font-weight: 500;
+      }
+
+      .checklist-item.completed .checklist-text {
+        text-decoration: line-through;
+        opacity: 0.6;
+      }
+
+      .projects-section {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        margin: 40px 0;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+      }
+
+      .project-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .project-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      .project-card h4 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+      }
+
+      .project-card p {
+        opacity: 0.9;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+      }
+
+      .difficulty {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: inline-block;
+      }
+
+      .stats-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 25px;
+        margin: 40px 0;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #667eea;
+        margin-bottom: 10px;
+      }
+
+      .stat-label {
+        color: #718096;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+      }
+
+      .resources-section {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        margin: 40px 0;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+      }
+
+      .resource-card {
+        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        color: #2d3748;
+        padding: 25px;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .resource-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .resource-card h4 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: #2d3748;
+      }
+
+      .resource-card p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+        color: #4a5568;
+      }
+
+      .resource-type {
+        background: rgba(255, 255, 255, 0.7);
+        color: #2d3748;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: inline-block;
+      }
+
+      .floating-nav {
+        position: fixed;
+        top: 50%;
+        right: 30px;
+        transform: translateY(-50%);
+        z-index: 1000;
+        background: white;
+        border-radius: 25px;
+        padding: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-item {
+        display: block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #cbd5e0;
+        margin: 10px 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .nav-item.active {
+        background: #667eea;
+        transform: scale(1.3);
+      }
+
+      .nav-item:hover {
+        background: #667eea;
+        transform: scale(1.2);
+      }
+
+      .nav-tooltip {
+        position: absolute;
+        right: 25px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #2d3748;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+      }
+
+      .nav-tooltip::after {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 6px solid transparent;
+        border-left-color: #2d3748;
+      }
+
+      .nav-item:hover .nav-tooltip {
+        opacity: 1;
+      }
+
+      .section {
+        margin: 60px 0;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        color: #2d3748;
+        margin-bottom: 30px;
+        text-align: center;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        border-radius: 2px;
+      }
+
+      .version-info {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 15px;
+        margin: 30px 0;
+        text-align: center;
+      }
+
+      .version-info h3 {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+      }
+
+      .version-info p {
+        opacity: 0.9;
+        font-size: 1.1rem;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 2000;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        max-width: 700px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: #718096;
+      }
+
+      .code-snippet {
+        background: #2d3748;
+        color: #e2e8f0;
+        padding: 20px;
+        border-radius: 10px;
+        font-family: "Monaco", "Menlo", monospace;
+        font-size: 0.9rem;
+        overflow-x: auto;
+        margin: 15px 0;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .floating-nav {
+          display: none;
+        }
+
+        .phases-container {
+          grid-template-columns: 1fr;
+        }
+
+        .container {
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Hero Section -->
+      <div class="hero">
+        <h1>📜 Solidity Developer Roadmap</h1>
+        <p class="subtitle">
+          Master the language of smart contracts and decentralized applications
+        </p>
+        <div class="badges">
+          <span class="badge">📜 Smart Contracts</span>
+          <span class="badge">⚡ Gas Optimization</span>
+          <span class="badge">🔒 Security Patterns</span>
+          <span class="badge">🧪 Testing</span>
+          <span class="badge">🚀 Deployment</span>
+        </div>
+      </div>
+
+      <!-- Version Info -->
+      <div class="version-info">
+        <h3>🔥 Latest Solidity Version</h3>
+        <p>
+          Currently learning Solidity 0.8.x with the latest features and
+          security improvements
+        </p>
+      </div>
+
+      <!-- Progress Tracker -->
+      <div class="progress-tracker section" id="progress">
+        <div class="progress-header">
+          <h2>📊 Your Solidity Mastery</h2>
+          <p>Track your journey to becoming a Solidity expert</p>
+        </div>
+
+        <div class="overall-progress">
+          <h3>Overall Progress</h3>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              id="overallProgress"
+              style="width: 0%"
+            ></div>
+          </div>
+          <div class="progress-text">
+            <span id="progressText">0% Complete</span> •
+            <span id="completedTasks">0</span> of
+            <span id="totalTasks">0</span> concepts mastered
+          </div>
+        </div>
+
+        <div class="stats-section">
+          <div class="stat-card">
+            <div class="stat-number" id="hoursSpent">0</div>
+            <div class="stat-label">Hours Coding</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="conceptsLearned">0</div>
+            <div class="stat-label">Concepts Learned</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="contractsBuilt">0</div>
+            <div class="stat-label">Contracts Built</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="challengesSolved">0</div>
+            <div class="stat-label">Challenges Solved</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Learning Phases -->
+      <div class="section" id="phases">
+        <h2 class="section-title">🎯 Solidity Learning Path</h2>
+        <div class="phases-container" id="phasesContainer">
+          <!-- Phases will be dynamically generated -->
+        </div>
+      </div>
+
+      <!-- Hands-on Projects -->
+      <div class="section" id="projects">
+        <div class="projects-section">
+          <h2 class="section-title">🛠️ Hands-on Projects</h2>
+          <div class="projects-grid">
+            <div class="project-card" onclick="showProjectDetails('token')">
+              <h4>🪙 ERC-20 Token</h4>
+              <p>
+                Create your own cryptocurrency with transfer, approval, and
+                minting functionality.
+              </p>
+              <span class="difficulty">Beginner</span>
+            </div>
+            <div class="project-card" onclick="showProjectDetails('voting')">
+              <h4>🗳️ Voting System</h4>
+              <p>
+                Build a decentralized voting platform with candidate
+                registration and ballot counting.
+              </p>
+              <span class="difficulty">Beginner</span>
+            </div>
+            <div class="project-card" onclick="showProjectDetails('auction')">
+              <h4>🏺 Auction House</h4>
+              <p>
+                Develop a smart contract for conducting transparent and
+                automated auctions.
+              </p>
+              <span class="difficulty">Intermediate</span>
+            </div>
+            <div class="project-card" onclick="showProjectDetails('nft')">
+              <h4>🎨 NFT Marketplace</h4>
+              <p>
+                Create an NFT minting and trading platform with royalty
+                distribution.
+              </p>
+              <span class="difficulty">Intermediate</span>
+            </div>
+            <div class="project-card" onclick="showProjectDetails('defi')">
+              <h4>💰 DeFi Protocol</h4>
+              <p>
+                Build a lending/borrowing protocol with liquidity pools and
+                yield farming.
+              </p>
+              <span class="difficulty">Advanced</span>
+            </div>
+            <div class="project-card" onclick="showProjectDetails('dao')">
+              <h4>🏛️ DAO Governance</h4>
+              <p>
+                Implement a decentralized autonomous organization with proposal
+                and voting mechanisms.
+              </p>
+              <span class="difficulty">Advanced</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Learning Resources -->
+      <div class="section" id="resources">
+        <div class="resources-section">
+          <h2 class="section-title">📚 Learning Resources</h2>
+          <div class="resources-grid">
+            <div
+              class="resource-card"
+              onclick="showResourceDetails('documentation')"
+            >
+              <h4>📖 Official Documentation</h4>
+              <p>
+                Comprehensive Solidity language reference and best practices
+                guide.
+              </p>
+              <span class="resource-type">Documentation</span>
+            </div>
+            <div
+              class="resource-card"
+              onclick="showResourceDetails('cryptozombies')"
+            >
+              <h4>🧟 CryptoZombies</h4>
+              <p>
+                Interactive coding school that teaches you to write smart
+                contracts through building games.
+              </p>
+              <span class="resource-type">Interactive</span>
+            </div>
+            <div class="resource-card" onclick="showResourceDetails('remix')">
+              <h4>💻 Remix IDE</h4>
+              <p>
+                Browser-based IDE for developing, testing, and deploying smart
+                contracts.
+              </p>
+              <span class="resource-type">Tool</span>
+            </div>
+            <div
+              class="resource-card"
+              onclick="showResourceDetails('ethernaut')"
+            >
+              <h4>🎯 Ethernaut</h4>
+              <p>
+                Web3/Solidity based wargame to learn smart contract security.
+              </p>
+              <span class="resource-type">Challenge</span>
+            </div>
+            <div
+              class="resource-card"
+              onclick="showResourceDetails('openzeppelin')"
+            >
+              <h4>🛡️ OpenZeppelin</h4>
+              <p>
+                Library of secure smart contract implementations and security
+                tools.
+              </p>
+              <span class="resource-type">Library</span>
+            </div>
+            <div class="resource-card" onclick="showResourceDetails('hardhat')">
+              <h4>⚒️ Hardhat</h4>
+              <p>
+                Ethereum development environment for professionals with testing
+                and debugging.
+              </p>
+              <span class="resource-type">Framework</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Navigation -->
+    <div class="floating-nav">
+      <a href="#progress" class="nav-item active" data-section="progress">
+        <span class="nav-tooltip">Progress</span>
+      </a>
+      <a href="#phases" class="nav-item" data-section="phases">
+        <span class="nav-tooltip">Learning</span>
+      </a>
+      <a href="#projects" class="nav-item" data-section="projects">
+        <span class="nav-tooltip">Projects</span>
+      </a>
+      <a href="#resources" class="nav-item" data-section="resources">
+        <span class="nav-tooltip">Resources</span>
+      </a>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="detailModal">
+      <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()">&times;</button>
+        <div id="modalContent">
+          <!-- Dynamic content will be inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Solidity learning phases
+      const phases = [
+        {
+          id: 1,
+          title: "Solidity Basics",
+          duration: "1-2 weeks",
+          tasks: [
+            "Understand Solidity syntax and structure",
+            "Learn about pragma statements and versions",
+            "Master contract declaration and layout",
+            "Understand state variables and their visibility",
+            "Learn about functions and function modifiers",
+            "Study events and their usage",
+            "Practice with comments and documentation",
+            "Understand import statements and dependencies",
+          ],
+        },
+        {
+          id: 2,
+          title: "Data Types & Variables",
+          duration: "1-2 weeks",
+          tasks: [
+            "Master value types (bool, int, uint, address)",
+            "Understand reference types (arrays, structs, mappings)",
+            "Learn about string and bytes manipulation",
+            "Study enum declarations and usage",
+            "Practice with constant and immutable variables",
+            "Understand variable scope and lifetime",
+            "Learn about default values and initialization",
+            "Master type conversions and casting",
+          ],
+        },
+        {
+          id: 3,
+          title: "Functions & Control Flow",
+          duration: "2-3 weeks",
+          tasks: [
+            "Master function declarations and parameters",
+            "Understand function visibility (public, private, internal, external)",
+            "Learn about function modifiers and their implementation",
+            "Study return values and multiple returns",
+            "Practice with if/else statements and ternary operators",
+            "Master loops (for, while, do-while)",
+            "Understand require, assert, and revert statements",
+            "Learn about function overloading",
+          ],
+        },
+        {
+          id: 4,
+          title: "Advanced Data Structures",
+          duration: "2-3 weeks",
+          tasks: [
+            "Master dynamic and fixed-size arrays",
+            "Understand nested arrays and multidimensional arrays",
+            "Learn about mappings and nested mappings",
+            "Study struct definitions and usage",
+            "Practice with array manipulation methods",
+            "Understand storage vs memory vs calldata",
+            "Learn about bytes arrays and string manipulation",
+            "Master iteration over mappings and arrays",
+          ],
+        },
+        {
+          id: 5,
+          title: "Contract Interactions",
+          duration: "2-3 weeks",
+          tasks: [
+            "Understand constructor functions",
+            "Learn about contract inheritance and overriding",
+            "Study interface definitions and implementations",
+            "Master abstract contracts and virtual functions",
+            "Practice with contract-to-contract calls",
+            "Understand delegatecall and its use cases",
+            "Learn about library creation and usage",
+            "Study contract deployment and initialization",
+          ],
+        },
+        {
+          id: 6,
+          title: "Error Handling & Security",
+          duration: "3-4 weeks",
+          tasks: [
+            "Master require statements for input validation",
+            "Understand assert vs require differences",
+            "Learn about custom error definitions",
+            "Study try-catch statements for external calls",
+            "Practice with reentrancy guards and prevention",
+            "Understand integer overflow/underflow protection",
+            "Learn about access control patterns",
+            "Study common security vulnerabilities and prevention",
+          ],
+        },
+        {
+          id: 7,
+          title: "Gas Optimization",
+          duration: "2-3 weeks",
+          tasks: [
+            "Understand gas costs and optimization strategies",
+            "Learn about storage vs memory gas costs",
+            "Master efficient data packing techniques",
+            "Study loop optimization and gas limits",
+            "Practice with function call optimization",
+            "Understand storage slot optimization",
+            "Learn about batch operations and gas efficiency",
+            "Study assembly basics for optimization",
+          ],
+        },
+        {
+          id: 8,
+          title: "Testing & Deployment",
+          duration: "2-3 weeks",
+          tasks: [
+            "Learn to write comprehensive unit tests",
+            "Master integration testing strategies",
+            "Understand test-driven development for smart contracts",
+            "Practice with mock contracts and testing utilities",
+            "Learn about deployment scripts and migrations",
+            "Study network configuration and management",
+            "Understand contract verification and transparency",
+            "Master debugging techniques and tools",
+          ],
+        },
+      ];
+
+      // Project details
+      const projectDetails = {
+        token: {
+          title: "🪙 ERC-20 Token Contract",
+          description:
+            "Build a complete ERC-20 token with transfer, approval, and minting functionality.",
+          features: [
+            "Implement standard ERC-20 interface",
+            "Add minting and burning capabilities",
+            "Implement access control for admin functions",
+            "Add pause/unpause functionality",
+            "Include comprehensive events logging",
+          ],
+          skills: ["Basic Solidity", "Token Standards", "Access Control"],
+          codeExample: `pragma solidity ^0.8.0;
+
+contract MyToken {
+    mapping(address => uint256) public balanceOf;
+    mapping(address => mapping(address => uint256)) public allowance;
+    
+    string public name = "MyToken";
+    string public symbol = "MTK";
+    uint8 public decimals = 18;
+    uint256 public totalSupply;
+    
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+    
+    function transfer(address to, uint256 amount) public returns (bool) {
+        require(balanceOf[msg.sender] >= amount, "Insufficient balance");
+        balanceOf[msg.sender] -= amount;
+        balanceOf[to] += amount;
+        emit Transfer(msg.sender, to, amount);
+        return true;
+    }
+}`,
+        },
+        voting: {
+          title: "🗳️ Decentralized Voting System",
+          description:
+            "Create a transparent voting platform with candidate registration and secure ballot counting.",
+          features: [
+            "Candidate registration and management",
+            "Secure voter registration with eligibility checks",
+            "Time-bounded voting periods",
+            "Real-time vote counting and results",
+            "Anti-fraud mechanisms and vote verification",
+          ],
+          skills: ["Mappings", "Structs", "Time Management", "Access Control"],
+          codeExample: `pragma solidity ^0.8.0;
+
+contract VotingSystem {
+    struct Candidate {
+        uint256 id;
+        string name;
+        uint256 voteCount;
+    }
+    
+    mapping(uint256 => Candidate) public candidates;
+    mapping(address => bool) public hasVoted;
+    
+    uint256 public candidatesCount;
+    uint256 public votingStart;
+    uint256 public votingEnd;
+    
+    event VoteCast(address indexed voter, uint256 candidateId);
+    
+    function vote(uint256 candidateId) public {
+        require(block.timestamp >= votingStart && block.timestamp <= votingEnd, "Voting not active");
+        require(!hasVoted[msg.sender], "Already voted");
+        require(candidateId > 0 && candidateId <= candidatesCount, "Invalid candidate");
+        
+        hasVoted[msg.sender] = true;
+        candidates[candidateId].voteCount++;
+        emit VoteCast(msg.sender, candidateId);
+    }
+}`,
+        },
+        auction: {
+          title: "🏺 Smart Contract Auction House",
+          description:
+            "Develop an automated auction system with bidding, time management, and fund handling.",
+          features: [
+            "English auction mechanism with reserve prices",
+            "Automatic bid validation and refunds",
+            "Time-based auction expiration",
+            "Secure fund handling and withdrawals",
+            "Emergency pause and admin controls",
+          ],
+          skills: ["Ether Handling", "Time Management", "Security Patterns"],
+          codeExample: `pragma solidity ^0.8.0;
+
+contract Auction {
+    address public owner;
+    uint256 public reservePrice;
+    uint256 public auctionEnd;
+    
+    address public highestBidder;
+    uint256 public highestBid;
+    mapping(address => uint256) public pendingReturns;
+    
+    bool public ended;
+    
+    event HighestBidIncreased(address bidder, uint256 amount);
+    event AuctionEnded(address winner, uint256 amount);
+    
+    function bid() public payable {
+        require(block.timestamp <= auctionEnd, "Auction already ended");
+        require(msg.value > highestBid, "Bid not high enough");
+        require(msg.value >= reservePrice, "Bid below reserve price");
+        
+        if (highestBid != 0) {
+            pendingReturns[highestBidder] += highestBid;
+        }
+        
+        highestBidder = msg.sender;
+        highestBid = msg.value;
+        emit HighestBidIncreased(msg.sender, msg.value);
+    }
+}`,
+        },
+        nft: {
+          title: "🎨 NFT Marketplace",
+          description:
+            "Create a complete NFT ecosystem with minting, trading, and royalty distribution.",
+          features: [
+            "ERC-721 NFT implementation with metadata",
+            "Marketplace for buying and selling NFTs",
+            "Royalty system for original creators",
+            "Batch minting and lazy minting options",
+            "Integration with IPFS for metadata storage",
+          ],
+          skills: [
+            "ERC-721",
+            "Marketplace Logic",
+            "Royalties",
+            "IPFS Integration",
+          ],
+          codeExample: `pragma solidity ^0.8.0;
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+
+contract NFTMarketplace is ERC721 {
+    struct NFTListing {
+        uint256 price;
+        address seller;
+        bool active;
+    }
+    
+    mapping(uint256 => NFTListing) public listings;
+    mapping(uint256 => address) public creators;
+    mapping(uint256 => uint256) public royaltyPercent;
+    
+    uint256 public nextTokenId;
+    uint256 public constant ROYALTY_BASIS = 10000;
+    
+    event NFTListed(uint256 indexed tokenId, uint256 price, address seller);
+    event NFTSold(uint256 indexed tokenId, address buyer, uint256 price);
+    
+    function mintNFT(address to, string memory tokenURI, uint256 royalty) public returns (uint256) {
+        uint256 tokenId = nextTokenId++;
+        _mint(to, tokenId);
+        _setTokenURI(tokenId, tokenURI);
+        creators[tokenId] = to;
+        royaltyPercent[tokenId] = royalty;
+        return tokenId;
+    }
+}`,
+        },
+        defi: {
+          title: "💰 DeFi Lending Protocol",
+          description:
+            "Build a comprehensive lending/borrowing protocol with liquidity pools and yield farming.",
+          features: [
+            "Lending and borrowing with collateral management",
+            "Dynamic interest rate calculations",
+            "Liquidation mechanisms for undercollateralized loans",
+            "Liquidity pool management and rewards",
+            "Governance token distribution and staking",
+          ],
+          skills: [
+            "Advanced Math",
+            "Oracle Integration",
+            "Complex State Management",
+          ],
+          codeExample: `pragma solidity ^0.8.0;
+
+contract LendingProtocol {
+    struct UserAccount {
+        uint256 deposited;
+        uint256 borrowed;
+        uint256 collateral;
+        uint256 lastInterestUpdate;
+    }
+    
+    mapping(address => UserAccount) public accounts;
+    mapping(address => uint256) public tokenPrices;
+    
+    uint256 public totalDeposits;
+    uint256 public totalBorrows;
+    uint256 public interestRate = 500; // 5% APY
+    uint256 public collateralRatio = 15000; // 150%
+    
+    event Deposit(address indexed user, uint256 amount);
+    event Borrow(address indexed user, uint256 amount);
+    event Liquidation(address indexed user, uint256 amount);
+    
+    function deposit() public payable {
+        require(msg.value > 0, "Amount must be greater than 0");
+        updateInterest(msg.sender);
+        accounts[msg.sender].deposited += msg.value;
+        totalDeposits += msg.value;
+        emit Deposit(msg.sender, msg.value);
+    }
+}`,
+        },
+        dao: {
+          title: "🏛️ DAO Governance System",
+          description:
+            "Implement a decentralized autonomous organization with proposal and voting mechanisms.",
+          features: [
+            "Proposal creation and management system",
+            "Token-based voting with delegation support",
+            "Timelock execution for approved proposals",
+            "Treasury management and fund allocation",
+            "Role-based permissions and access control",
+          ],
+          skills: [
+            "Governance Patterns",
+            "Token Voting",
+            "Timelock",
+            "Treasury Management",
+          ],
+          codeExample: `pragma solidity ^0.8.0;
+
+contract DAO {
+    struct Proposal {
+        uint256 id;
+        address proposer;
+        string description;
+        uint256 votesFor;
+        uint256 votesAgainst;
+        uint256 endTime;
+        bool executed;
+        mapping(address => bool) hasVoted;
+    }
+    
+    mapping(uint256 => Proposal) public proposals;
+    mapping(address => uint256) public votingPower;
+    
+    uint256 public proposalCount;
+    uint256 public constant VOTING_PERIOD = 7 days;
+    uint256 public constant EXECUTION_DELAY = 2 days;
+    
+    event ProposalCreated(uint256 proposalId, address proposer, string description);
+    event VoteCast(address voter, uint256 proposalId, bool support, uint256 votes);
+    
+    function createProposal(string memory description) public returns (uint256) {
+        require(votingPower[msg.sender] >= 1000, "Insufficient voting power");
+        
+        uint256 proposalId = proposalCount++;
+        Proposal storage newProposal = proposals[proposalId];
+        newProposal.id = proposalId;
+        newProposal.proposer = msg.sender;
+        newProposal.description = description;
+        newProposal.endTime = block.timestamp + VOTING_PERIOD;
+        
+        emit ProposalCreated(proposalId, msg.sender, description);
+        return proposalId;
+    }
+}`,
+        },
+      };
+
+      // Resource details
+      const resourceDetails = {
+        documentation: {
+          title: "📖 Official Solidity Documentation",
+          description:
+            "The definitive guide to Solidity programming language with comprehensive examples and best practices.",
+          content: [
+            "Complete language reference and syntax guide",
+            "Security considerations and best practices",
+            "Gas optimization techniques and patterns",
+            "Smart contract design patterns",
+            "Integration with development tools",
+          ],
+          url: "https://docs.soliditylang.org/",
+          type: "Documentation",
+        },
+        cryptozombies: {
+          title: "🧟 CryptoZombies Interactive School",
+          description:
+            "Learn Solidity by building your own crypto-collectible game through interactive coding lessons.",
+          content: [
+            "Interactive coding lessons with immediate feedback",
+            "Build a complete zombie fighting game",
+            "Learn through practical, hands-on exercises",
+            "Progressive difficulty from beginner to advanced",
+            "Free and accessible to everyone",
+          ],
+          url: "https://cryptozombies.io/",
+          type: "Interactive Course",
+        },
+        remix: {
+          title: "💻 Remix IDE",
+          description:
+            "Browser-based integrated development environment for Solidity smart contract development.",
+          content: [
+            "Write, compile, and deploy smart contracts",
+            "Built-in debugger and testing environment",
+            "Integration with multiple networks and wallets",
+            "Plugin ecosystem for extended functionality",
+            "No installation required, runs in browser",
+          ],
+          url: "https://remix.ethereum.org/",
+          type: "Development Tool",
+        },
+        ethernaut: {
+          title: "🎯 Ethernaut Security Challenges",
+          description:
+            "Web3/Solidity based wargame where you hack smart contracts to learn security.",
+          content: [
+            "20+ security-focused coding challenges",
+            "Learn common smart contract vulnerabilities",
+            "Hands-on experience with attack vectors",
+            "Progressive difficulty levels",
+            "Community solutions and explanations",
+          ],
+          url: "https://ethernaut.openzeppelin.com/",
+          type: "Security Training",
+        },
+        openzeppelin: {
+          title: "🛡️ OpenZeppelin Contracts",
+          description:
+            "Library of modular, reusable, secure smart contracts for the Ethereum network.",
+          content: [
+            "Battle-tested smart contract implementations",
+            "Token standards (ERC20, ERC721, ERC1155)",
+            "Access control and security utilities",
+            "Upgradeable contract patterns",
+            "Comprehensive documentation and guides",
+          ],
+          url: "https://openzeppelin.com/contracts/",
+          type: "Library",
+        },
+        hardhat: {
+          title: "⚒️ Hardhat Development Environment",
+          description:
+            "Ethereum development environment for professionals with testing, debugging, and deployment tools.",
+          content: [
+            "Local Ethereum network for testing",
+            "Advanced debugging capabilities",
+            "Automated testing framework",
+            "Flexible deployment system",
+            "Rich plugin ecosystem",
+          ],
+          url: "https://hardhat.org/",
+          type: "Framework",
+        },
+      };
+
+      // State management
+      let completedTasks = new Set();
+      let userStats = {
+        hoursSpent: 0,
+        conceptsLearned: 0,
+        contractsBuilt: 0,
+        challengesSolved: 0,
+      };
+
+      // Initialize the application
+      function init() {
+        // Reset stats to ensure clean start
+        userStats = {
+          hoursSpent: 0,
+          conceptsLearned: 0,
+          contractsBuilt: 0,
+          challengesSolved: 0,
+        };
+
+        renderPhases();
+        loadProgress();
+        updateStats();
+        setupIntersectionObserver();
+        setupNavigation();
+
+        // Initial progress update
+        setTimeout(() => {
+          updateOverallProgress();
+        }, 500);
+      }
+
+      // Render all phases
+      function renderPhases() {
+        const container = document.getElementById("phasesContainer");
+        container.innerHTML = "";
+
+        phases.forEach((phase) => {
+          const phaseCard = createPhaseCard(phase);
+          container.appendChild(phaseCard);
+        });
+
+        updateTaskCounts();
+      }
+
+      // Create a phase card
+      function createPhaseCard(phase) {
+        const card = document.createElement("div");
+        card.className = `phase-card phase-${phase.id}`;
+        card.innerHTML = `
+                <div class="phase-header">
+                    <h3 class="phase-title">Phase ${phase.id}: ${
+          phase.title
+        }</h3>
+                    <span class="phase-duration">${phase.duration}</span>
+                </div>
+                <ul class="checklist">
+                    ${phase.tasks
+                      .map(
+                        (task, index) => `
+                        <li class="checklist-item" data-phase="${phase.id}" data-task="${index}">
+                            <div class="checkbox"></div>
+                            <span class="checklist-text">${task}</span>
+                        </li>
+                    `
+                      )
+                      .join("")}
+                </ul>
+            `;
+
+        // Add click listeners to checklist items
+        const checklistItems = card.querySelectorAll(".checklist-item");
+        checklistItems.forEach((item) => {
+          item.addEventListener("click", () => toggleTask(item));
+        });
+
+        return card;
+      }
+
+      // Toggle task completion
+      function toggleTask(item) {
+        const phase = item.dataset.phase;
+        const task = item.dataset.task;
+        const taskId = `${phase}-${task}`;
+
+        const checkbox = item.querySelector(".checkbox");
+        const isCompleted = completedTasks.has(taskId);
+
+        if (isCompleted) {
+          completedTasks.delete(taskId);
+          checkbox.classList.remove("checked");
+          item.classList.remove("completed");
+          userStats.hoursSpent = Math.max(0, userStats.hoursSpent - 4);
+          userStats.conceptsLearned = Math.max(
+            0,
+            userStats.conceptsLearned - 1
+          );
+        } else {
+          completedTasks.add(taskId);
+          checkbox.classList.add("checked");
+          item.classList.add("completed");
+          userStats.hoursSpent += 4;
+          userStats.conceptsLearned += 1;
+
+          // Check if phase is completed for contract building
+          const phaseData = phases.find((p) => p.id == phase);
+          if (phaseData) {
+            const phaseTasksCompleted = phaseData.tasks.filter((_, index) =>
+              completedTasks.has(`${phase}-${index}`)
+            ).length;
+
+            if (phaseTasksCompleted === phaseData.tasks.length) {
+              userStats.contractsBuilt += 1;
+              userStats.challengesSolved += 2;
+            }
+          }
+
+          // Animate completion
+          item.style.animation = "fadeInUp 0.5s ease";
+
+          // Show celebration effect
+          showCelebration(item);
+        }
+
+        updateOverallProgress();
+        updateStats();
+        saveProgress();
+      }
+
+      // Show celebration effect
+      function showCelebration(item) {
+        const rect = item.getBoundingClientRect();
+        const celebration = document.createElement("div");
+        celebration.innerHTML = "🎉";
+        celebration.style.cssText = `
+                position: fixed;
+                left: ${rect.left + rect.width / 2}px;
+                top: ${rect.top + rect.height / 2}px;
+                font-size: 2rem;
+                pointer-events: none;
+                z-index: 1000;
+                animation: celebrationPop 1s ease-out forwards;
+            `;
+
+        // Add celebration animation
+        const style = document.createElement("style");
+        style.textContent = `
+                @keyframes celebrationPop {
+                    0% { transform: scale(0) translateY(0); opacity: 1; }
+                    50% { transform: scale(1.5) translateY(-20px); opacity: 1; }
+                    100% { transform: scale(0) translateY(-40px); opacity: 0; }
+                }
+            `;
+        document.head.appendChild(style);
+        document.body.appendChild(celebration);
+
+        setTimeout(() => {
+          document.body.removeChild(celebration);
+          document.head.removeChild(style);
+        }, 1000);
+      }
+
+      // Update overall progress
+      function updateOverallProgress() {
+        const totalTasks = phases.reduce(
+          (sum, phase) => sum + phase.tasks.length,
+          0
+        );
+        const completed = completedTasks.size;
+        const percentage =
+          totalTasks > 0 ? Math.round((completed / totalTasks) * 100) : 0;
+
+        document.getElementById(
+          "overallProgress"
+        ).style.width = `${percentage}%`;
+        document.getElementById(
+          "progressText"
+        ).textContent = `${percentage}% Complete`;
+        document.getElementById("completedTasks").textContent = completed;
+        document.getElementById("totalTasks").textContent = totalTasks;
+      }
+
+      // Update task counts
+      function updateTaskCounts() {
+        const totalTasks = phases.reduce(
+          (sum, phase) => sum + phase.tasks.length,
+          0
+        );
+        document.getElementById("totalTasks").textContent = totalTasks;
+      }
+
+      // Update statistics
+      function updateStats() {
+        // Ensure all values are non-negative
+        userStats.hoursSpent = Math.max(0, userStats.hoursSpent);
+        userStats.conceptsLearned = Math.max(0, userStats.conceptsLearned);
+        userStats.contractsBuilt = Math.max(0, userStats.contractsBuilt);
+        userStats.challengesSolved = Math.max(0, userStats.challengesSolved);
+
+        // Update DOM elements with proper values
+        document.getElementById("hoursSpent").textContent =
+          userStats.hoursSpent;
+        document.getElementById("conceptsLearned").textContent =
+          userStats.conceptsLearned;
+        document.getElementById("contractsBuilt").textContent =
+          userStats.contractsBuilt;
+        document.getElementById("challengesSolved").textContent =
+          userStats.challengesSolved;
+      }
+
+      // Show project details in modal
+      function showProjectDetails(projectKey) {
+        const project = projectDetails[projectKey];
+        if (!project) return;
+
+        const modalContent = document.getElementById("modalContent");
+        modalContent.innerHTML = `
+                <h2>${project.title}</h2>
+                <p style="margin-bottom: 20px; color: #4a5568; font-size: 1.1rem;">${
+                  project.description
+                }</p>
+                
+                <h3 style="color: #2d3748; margin-bottom: 15px;">🌟 Key Features</h3>
+                <ul style="margin-bottom: 25px;">
+                    ${project.features
+                      .map(
+                        (feature) =>
+                          `<li style="margin: 8px 0; color: #4a5568;">${feature}</li>`
+                      )
+                      .join("")}
+                </ul>
+                
+                <h3 style="color: #2d3748; margin-bottom: 15px;">🛠️ Skills Required</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px;">
+                    ${project.skills
+                      .map(
+                        (skill) => `
+                        <span style="
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            color: white;
+                            padding: 6px 14px;
+                            border-radius: 15px;
+                            font-size: 0.85rem;
+                            font-weight: 600;
+                        ">${skill}</span>
+                    `
+                      )
+                      .join("")}
+                </div>
+                
+                <h3 style="color: #2d3748; margin-bottom: 15px;">💻 Code Example</h3>
+                <div class="code-snippet">${project.codeExample}</div>
+            `;
+
+        document.getElementById("detailModal").style.display = "block";
+      }
+
+      // Show resource details in modal
+      function showResourceDetails(resourceKey) {
+        const resource = resourceDetails[resourceKey];
+        if (!resource) return;
+
+        const modalContent = document.getElementById("modalContent");
+        modalContent.innerHTML = `
+                <h2>${resource.title}</h2>
+                <p style="margin-bottom: 20px; color: #4a5568; font-size: 1.1rem;">${
+                  resource.description
+                }</p>
+                
+                <div style="margin-bottom: 20px;">
+                    <span style="
+                        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+                        color: #2d3748;
+                        padding: 6px 14px;
+                        border-radius: 15px;
+                        font-size: 0.85rem;
+                        font-weight: 600;
+                    ">${resource.type}</span>
+                </div>
+                
+                <h3 style="color: #2d3748; margin-bottom: 15px;">📋 What You'll Learn</h3>
+                <ul style="margin-bottom: 25px;">
+                    ${resource.content
+                      .map(
+                        (item) =>
+                          `<li style="margin: 8px 0; color: #4a5568;">${item}</li>`
+                      )
+                      .join("")}
+                </ul>
+                
+                <div style="text-align: center;">
+                    <a href="${resource.url}" target="_blank" style="
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+                        padding: 12px 24px;
+                        border-radius: 25px;
+                        text-decoration: none;
+                        font-weight: 600;
+                        display: inline-block;
+                        transition: transform 0.3s ease;
+                    " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        🚀 Start Learning
+                    </a>
+                </div>
+            `;
+
+        document.getElementById("detailModal").style.display = "block";
+      }
+
+      // Close modal
+      function closeModal() {
+        document.getElementById("detailModal").style.display = "none";
+      }
+
+      // Setup intersection observer for scroll animations
+      function setupIntersectionObserver() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll(".section").forEach((section) => {
+          observer.observe(section);
+        });
+      }
+
+      // Setup navigation
+      function setupNavigation() {
+        const navItems = document.querySelectorAll(".nav-item");
+
+        navItems.forEach((item) => {
+          item.addEventListener("click", (e) => {
+            e.preventDefault();
+            const targetId = item.getAttribute("href").substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+
+              // Update active nav item
+              navItems.forEach((nav) => nav.classList.remove("active"));
+              item.classList.add("active");
+            }
+          });
+        });
+
+        // Update active nav on scroll
+        window.addEventListener("scroll", () => {
+          const sections = document.querySelectorAll(".section");
+          const scrollPos = window.scrollY + 100;
+
+          sections.forEach((section) => {
+            const top = section.offsetTop;
+            const bottom = top + section.offsetHeight;
+            const id = section.getAttribute("id");
+
+            if (scrollPos >= top && scrollPos < bottom) {
+              navItems.forEach((nav) => nav.classList.remove("active"));
+              const activeNav = document.querySelector(
+                `[data-section="${id}"]`
+              );
+              if (activeNav) activeNav.classList.add("active");
+            }
+          });
+        });
+      }
+
+      // Save progress to memory
+      function saveProgress() {
+        const progressData = {
+          completedTasks: Array.from(completedTasks),
+          userStats: userStats,
+          lastUpdated: new Date().toISOString(),
+        };
+
+        window.progressData = progressData;
+      }
+
+      // Load progress from memory
+      function loadProgress() {
+        // Initialize with clean slate for artifact
+        completedTasks = new Set();
+        userStats = {
+          hoursSpent: 0,
+          conceptsLearned: 0,
+          contractsBuilt: 0,
+          challengesSolved: 0,
+        };
+
+        // Load from memory if available
+        const saved = window.progressData;
+
+        if (saved && saved.completedTasks) {
+          completedTasks = new Set(saved.completedTasks);
+          userStats = { ...userStats, ...saved.userStats };
+
+          // Ensure no negative values
+          Object.keys(userStats).forEach((key) => {
+            if (typeof userStats[key] === "number") {
+              userStats[key] = Math.max(0, userStats[key]);
+            }
+          });
+
+          // Apply saved progress to UI
+          setTimeout(() => {
+            completedTasks.forEach((taskId) => {
+              const [phase, task] = taskId.split("-");
+              const item = document.querySelector(
+                `[data-phase="${phase}"][data-task="${task}"]`
+              );
+              if (item) {
+                const checkbox = item.querySelector(".checkbox");
+                checkbox.classList.add("checked");
+                item.classList.add("completed");
+              }
+            });
+            updateOverallProgress();
+            updateStats();
+          }, 100);
+        }
+      }
+
+      // Add keyboard shortcuts
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeModal();
+        }
+      });
+
+      // Add click outside modal to close
+      document.getElementById("detailModal").addEventListener("click", (e) => {
+        if (e.target.id === "detailModal") {
+          closeModal();
+        }
+      });
+
+      // Auto-save progress periodically
+      setInterval(saveProgress, 30000); // Save every 30 seconds
+
+      // Initialize when DOM is loaded
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+
+      // Add smooth scrolling for all anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Add parallax effect to hero section
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector(".hero");
+        if (hero) {
+          hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+          hero.style.opacity = Math.max(0, 1 - scrolled / 600);
+        }
+      });
+
+      console.log("📜 Solidity Developer Roadmap initialized successfully!");
+      console.log(
+        "💡 Tip: Click on concepts to mark them as learned and track your Solidity mastery!"
+      );
+    </script>
+  </body>
+</html>
