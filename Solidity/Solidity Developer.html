@@ -549,9 +549,9 @@
         background: white;
         padding: 40px;
         border-radius: 20px;
-        max-width: 700px;
+        max-width: 800px;
         width: 90%;
-        max-height: 80vh;
+        max-height: 85vh;
         overflow-y: auto;
       }
 
@@ -575,6 +575,63 @@
         font-size: 0.9rem;
         overflow-x: auto;
         margin: 15px 0;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 15px;
+        margin: 25px 0;
+        flex-wrap: wrap;
+      }
+
+      .project-link {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+      }
+
+      .project-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      .youtube-link {
+        background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+      }
+
+      .youtube-link:hover {
+        box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+      }
+
+      .course-link {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+      }
+
+      .course-link:hover {
+        box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+      }
+
+      .video-container {
+        margin: 20px 0;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .video-container iframe {
+        width: 100%;
+        height: 300px;
+        border: none;
       }
 
       @keyframes fadeInUp {
@@ -632,6 +689,14 @@
 
         .container {
           padding: 10px;
+        }
+
+        .project-links {
+          flex-direction: column;
+        }
+
+        .video-container iframe {
+          height: 200px;
         }
       }
     </style>
@@ -1003,21 +1068,24 @@
             "Add pause/unpause functionality",
             "Include comprehensive events logging",
           ],
+          youtube: "https://youtu.be/U72vty8dBvg?si=_07QSSf4Az_7t5jP",
+          link: "https://www.theblockchaincoders.com/sourceCode/erc20-token-creator-online-tool",
+          name: "ERC-20 Token Creator",
           skills: ["Basic Solidity", "Token Standards", "Access Control"],
           codeExample: `pragma solidity ^0.8.0;
 
 contract MyToken {
     mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
-    
+
     string public name = "MyToken";
     string public symbol = "MTK";
     uint8 public decimals = 18;
     uint256 public totalSupply;
-    
+
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
-    
+
     function transfer(address to, uint256 amount) public returns (bool) {
         require(balanceOf[msg.sender] >= amount, "Insufficient balance");
         balanceOf[msg.sender] -= amount;
@@ -1038,6 +1106,9 @@ contract MyToken {
             "Real-time vote counting and results",
             "Anti-fraud mechanisms and vote verification",
           ],
+          youtube: "https://youtu.be/Wc-f2TQIuHs?si=2P2sKDihYOEdc2eP",
+          link: "https://www.theblockchaincoders.com/sourceCode/ethereum-decentralized-voting-project-source-code",
+          name: "Voting Dapp Project",
           skills: ["Mappings", "Structs", "Time Management", "Access Control"],
           codeExample: `pragma solidity ^0.8.0;
 
@@ -1047,21 +1118,21 @@ contract VotingSystem {
         string name;
         uint256 voteCount;
     }
-    
+
     mapping(uint256 => Candidate) public candidates;
     mapping(address => bool) public hasVoted;
-    
+
     uint256 public candidatesCount;
     uint256 public votingStart;
     uint256 public votingEnd;
-    
+
     event VoteCast(address indexed voter, uint256 candidateId);
-    
+
     function vote(uint256 candidateId) public {
         require(block.timestamp >= votingStart && block.timestamp <= votingEnd, "Voting not active");
         require(!hasVoted[msg.sender], "Already voted");
         require(candidateId > 0 && candidateId <= candidatesCount, "Invalid candidate");
-        
+
         hasVoted[msg.sender] = true;
         candidates[candidateId].voteCount++;
         emit VoteCast(msg.sender, candidateId);
@@ -1079,6 +1150,9 @@ contract VotingSystem {
             "Secure fund handling and withdrawals",
             "Emergency pause and admin controls",
           ],
+          youtube: "https://youtu.be/9iSsnQJyUDM?si=Uy0y_h27sDujp5XF",
+          link: "https://www.theblockchaincoders.com/sourceCode/crowd-funding-marketplace-project-source-code",
+          name: "Crowd Funding Marketplace",
           skills: ["Ether Handling", "Time Management", "Security Patterns"],
           codeExample: `pragma solidity ^0.8.0;
 
@@ -1086,25 +1160,25 @@ contract Auction {
     address public owner;
     uint256 public reservePrice;
     uint256 public auctionEnd;
-    
+
     address public highestBidder;
     uint256 public highestBid;
     mapping(address => uint256) public pendingReturns;
-    
+
     bool public ended;
-    
+
     event HighestBidIncreased(address bidder, uint256 amount);
     event AuctionEnded(address winner, uint256 amount);
-    
+
     function bid() public payable {
         require(block.timestamp <= auctionEnd, "Auction already ended");
         require(msg.value > highestBid, "Bid not high enough");
         require(msg.value >= reservePrice, "Bid below reserve price");
-        
+
         if (highestBid != 0) {
             pendingReturns[highestBidder] += highestBid;
         }
-        
+
         highestBidder = msg.sender;
         highestBid = msg.value;
         emit HighestBidIncreased(msg.sender, msg.value);
@@ -1122,6 +1196,9 @@ contract Auction {
             "Batch minting and lazy minting options",
             "Integration with IPFS for metadata storage",
           ],
+          youtube: "https://youtu.be/S3jJtGYI18E?si=XBqfn-_T3W1ZZzQ5",
+          link: "https://www.theblockchaincoders.com/sourceCode/nft-marketplace-project-source-code",
+          name: "NFT Marketplace Project",
           skills: [
             "ERC-721",
             "Marketplace Logic",
@@ -1137,17 +1214,17 @@ contract NFTMarketplace is ERC721 {
         address seller;
         bool active;
     }
-    
+
     mapping(uint256 => NFTListing) public listings;
     mapping(uint256 => address) public creators;
     mapping(uint256 => uint256) public royaltyPercent;
-    
+
     uint256 public nextTokenId;
     uint256 public constant ROYALTY_BASIS = 10000;
-    
+
     event NFTListed(uint256 indexed tokenId, uint256 price, address seller);
     event NFTSold(uint256 indexed tokenId, address buyer, uint256 price);
-    
+
     function mintNFT(address to, string memory tokenURI, uint256 royalty) public returns (uint256) {
         uint256 tokenId = nextTokenId++;
         _mint(to, tokenId);
@@ -1169,6 +1246,9 @@ contract NFTMarketplace is ERC721 {
             "Liquidity pool management and rewards",
             "Governance token distribution and staking",
           ],
+          youtube: "https://youtu.be/ZNDZuT9hmNo?si=G8oQ6YZz7_iW3705",
+          link: "https://www.theblockchaincoders.com/sourceCode/build-uniswap-dapp-project-source-code",
+          name: "Uniswap Dapp Project",
           skills: [
             "Advanced Math",
             "Oracle Integration",
@@ -1183,19 +1263,19 @@ contract LendingProtocol {
         uint256 collateral;
         uint256 lastInterestUpdate;
     }
-    
+
     mapping(address => UserAccount) public accounts;
     mapping(address => uint256) public tokenPrices;
-    
+
     uint256 public totalDeposits;
     uint256 public totalBorrows;
     uint256 public interestRate = 500; // 5% APY
     uint256 public collateralRatio = 15000; // 150%
-    
+
     event Deposit(address indexed user, uint256 amount);
     event Borrow(address indexed user, uint256 amount);
     event Liquidation(address indexed user, uint256 amount);
-    
+
     function deposit() public payable {
         require(msg.value > 0, "Amount must be greater than 0");
         updateInterest(msg.sender);
@@ -1206,7 +1286,7 @@ contract LendingProtocol {
 }`,
         },
         dao: {
-          title: "🏛️ DAO Governance System",
+          title: "🏛️ Web3 Chat Dapp System",
           description:
             "Implement a decentralized autonomous organization with proposal and voting mechanisms.",
           features: [
@@ -1216,6 +1296,9 @@ contract LendingProtocol {
             "Treasury management and fund allocation",
             "Role-based permissions and access control",
           ],
+          youtube: "https://youtu.be/yle9MMqY7yY?si=g4Q3cMDmHUOM33fW",
+          link: "https://www.theblockchaincoders.com/sourceCode/blockchain-chat-dapp-project-source-code",
+          name: "Web3 Chat Dapp Project",
           skills: [
             "Governance Patterns",
             "Token Voting",
@@ -1235,27 +1318,27 @@ contract DAO {
         bool executed;
         mapping(address => bool) hasVoted;
     }
-    
+
     mapping(uint256 => Proposal) public proposals;
     mapping(address => uint256) public votingPower;
-    
+
     uint256 public proposalCount;
     uint256 public constant VOTING_PERIOD = 7 days;
     uint256 public constant EXECUTION_DELAY = 2 days;
-    
+
     event ProposalCreated(uint256 proposalId, address proposer, string description);
     event VoteCast(address voter, uint256 proposalId, bool support, uint256 votes);
-    
+
     function createProposal(string memory description) public returns (uint256) {
         require(votingPower[msg.sender] >= 1000, "Insufficient voting power");
-        
+
         uint256 proposalId = proposalCount++;
         Proposal storage newProposal = proposals[proposalId];
         newProposal.id = proposalId;
         newProposal.proposer = msg.sender;
         newProposal.description = description;
         newProposal.endTime = block.timestamp + VOTING_PERIOD;
-        
+
         emit ProposalCreated(proposalId, msg.sender, description);
         return proposalId;
     }
@@ -1285,7 +1368,7 @@ contract DAO {
             "Learn Solidity by building your own crypto-collectible through interactive coding lessons and industry ready projects.",
           content: [
             "Interactive coding lessons with immediate feedback",
-            "Build a industry project  ",
+            "Build a industry project",
             "Learn through practical, hands-on exercises",
             "Progressive difficulty from beginner to advanced",
             "Free and accessible to everyone",
@@ -1351,6 +1434,14 @@ contract DAO {
         },
       };
 
+      // Helper function to extract YouTube video ID
+      function getYouTubeVideoId(url) {
+        const regExp =
+          /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return match && match[2].length === 11 ? match[2] : null;
+      }
+
       // State management
       let completedTasks = new Set();
       let userStats = {
@@ -1400,25 +1491,23 @@ contract DAO {
         const card = document.createElement("div");
         card.className = `phase-card phase-${phase.id}`;
         card.innerHTML = `
-                <div class="phase-header">
-                    <h3 class="phase-title">Phase ${phase.id}: ${
-          phase.title
-        }</h3>
-                    <span class="phase-duration">${phase.duration}</span>
-                </div>
-                <ul class="checklist">
-                    ${phase.tasks
-                      .map(
-                        (task, index) => `
-                        <li class="checklist-item" data-phase="${phase.id}" data-task="${index}">
-                            <div class="checkbox"></div>
-                            <span class="checklist-text">${task}</span>
-                        </li>
-                    `
-                      )
-                      .join("")}
-                </ul>
-            `;
+            <div class="phase-header">
+                <h3 class="phase-title">Phase ${phase.id}: ${phase.title}</h3>
+                <span class="phase-duration">${phase.duration}</span>
+            </div>
+            <ul class="checklist">
+                ${phase.tasks
+                  .map(
+                    (task, index) => `
+                    <li class="checklist-item" data-phase="${phase.id}" data-task="${index}">
+                        <div class="checkbox"></div>
+                        <span class="checklist-text">${task}</span>
+                    </li>
+                `
+                  )
+                  .join("")}
+            </ul>
+        `;
 
         // Add click listeners to checklist items
         const checklistItems = card.querySelectorAll(".checklist-item");
@@ -1485,24 +1574,24 @@ contract DAO {
         const celebration = document.createElement("div");
         celebration.innerHTML = "🎉";
         celebration.style.cssText = `
-                position: fixed;
-                left: ${rect.left + rect.width / 2}px;
-                top: ${rect.top + rect.height / 2}px;
-                font-size: 2rem;
-                pointer-events: none;
-                z-index: 1000;
-                animation: celebrationPop 1s ease-out forwards;
-            `;
+            position: fixed;
+            left: ${rect.left + rect.width / 2}px;
+            top: ${rect.top + rect.height / 2}px;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: 1000;
+            animation: celebrationPop 1s ease-out forwards;
+        `;
 
         // Add celebration animation
         const style = document.createElement("style");
         style.textContent = `
-                @keyframes celebrationPop {
-                    0% { transform: scale(0) translateY(0); opacity: 1; }
-                    50% { transform: scale(1.5) translateY(-20px); opacity: 1; }
-                    100% { transform: scale(0) translateY(-40px); opacity: 0; }
-                }
-            `;
+            @keyframes celebrationPop {
+                0% { transform: scale(0) translateY(0); opacity: 1; }
+                50% { transform: scale(1.5) translateY(-20px); opacity: 1; }
+                100% { transform: scale(0) translateY(-40px); opacity: 0; }
+            }
+        `;
         document.head.appendChild(style);
         document.body.appendChild(celebration);
 
@@ -1565,44 +1654,68 @@ contract DAO {
         const project = projectDetails[projectKey];
         if (!project) return;
 
+        const videoId = getYouTubeVideoId(project.youtube);
+        const videoEmbed = videoId
+          ? `<div class="video-container">
+             <iframe src="https://www.youtube.com/embed/${videoId}" 
+                     allowfullscreen>
+             </iframe>
+           </div>`
+          : "";
+
         const modalContent = document.getElementById("modalContent");
         modalContent.innerHTML = `
-                <h2>${project.title}</h2>
-                <p style="margin-bottom: 20px; color: #4a5568; font-size: 1.1rem;">${
-                  project.description
-                }</p>
-                
-                <h3 style="color: #2d3748; margin-bottom: 15px;">🌟 Key Features</h3>
-                <ul style="margin-bottom: 25px;">
-                    ${project.features
-                      .map(
-                        (feature) =>
-                          `<li style="margin: 8px 0; color: #4a5568;">${feature}</li>`
-                      )
-                      .join("")}
-                </ul>
-                
-                <h3 style="color: #2d3748; margin-bottom: 15px;">🛠️ Skills Required</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px;">
-                    ${project.skills
-                      .map(
-                        (skill) => `
-                        <span style="
-                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                            color: white;
-                            padding: 6px 14px;
-                            border-radius: 15px;
-                            font-size: 0.85rem;
-                            font-weight: 600;
-                        ">${skill}</span>
-                    `
-                      )
-                      .join("")}
-                </div>
-                
-                <h3 style="color: #2d3748; margin-bottom: 15px;">💻 Code Example</h3>
-                <div class="code-snippet">${project.codeExample}</div>
-            `;
+            <h2>${project.title}</h2>
+            <p style="margin-bottom: 20px; color: #4a5568; font-size: 1.1rem;">${
+              project.description
+            }</p>
+
+            ${videoEmbed}
+
+            <div class="project-links">
+                <a href="${
+                  project.youtube
+                }" target="_blank" class="project-link youtube-link">
+                    🎥 Watch Tutorial
+                </a>
+                <a href="${
+                  project.link
+                }" target="_blank" class="project-link course-link">
+                    📚 ${project.name}
+                </a>
+            </div>
+
+            <h3 style="color: #2d3748; margin-bottom: 15px;">🌟 Key Features</h3>
+            <ul style="margin-bottom: 25px;">
+                ${project.features
+                  .map(
+                    (feature) =>
+                      `<li style="margin: 8px 0; color: #4a5568;">${feature}</li>`
+                  )
+                  .join("")}
+            </ul>
+
+            <h3 style="color: #2d3748; margin-bottom: 15px;">🛠️ Skills Required</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px;">
+                ${project.skills
+                  .map(
+                    (skill) => `
+                    <span style="
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+                        padding: 6px 14px;
+                        border-radius: 15px;
+                        font-size: 0.85rem;
+                        font-weight: 600;
+                    ">${skill}</span>
+                `
+                  )
+                  .join("")}
+            </div>
+
+            <h3 style="color: #2d3748; margin-bottom: 15px;">💻 Code Example</h3>
+            <div class="code-snippet">${project.codeExample}</div>
+        `;
 
         document.getElementById("detailModal").style.display = "block";
       }
@@ -1614,47 +1727,47 @@ contract DAO {
 
         const modalContent = document.getElementById("modalContent");
         modalContent.innerHTML = `
-                <h2>${resource.title}</h2>
-                <p style="margin-bottom: 20px; color: #4a5568; font-size: 1.1rem;">${
-                  resource.description
-                }</p>
-                
-                <div style="margin-bottom: 20px;">
-                    <span style="
-                        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-                        color: #2d3748;
-                        padding: 6px 14px;
-                        border-radius: 15px;
-                        font-size: 0.85rem;
-                        font-weight: 600;
-                    ">${resource.type}</span>
-                </div>
-                
-                <h3 style="color: #2d3748; margin-bottom: 15px;">📋 What You'll Learn</h3>
-                <ul style="margin-bottom: 25px;">
-                    ${resource.content
-                      .map(
-                        (item) =>
-                          `<li style="margin: 8px 0; color: #4a5568;">${item}</li>`
-                      )
-                      .join("")}
-                </ul>
-                
-                <div style="text-align: center;">
-                    <a href="${resource.url}" target="_blank" style="
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                        color: white;
-                        padding: 12px 24px;
-                        border-radius: 25px;
-                        text-decoration: none;
-                        font-weight: 600;
-                        display: inline-block;
-                        transition: transform 0.3s ease;
-                    " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                        🚀 Start Learning
-                    </a>
-                </div>
-            `;
+            <h2>${resource.title}</h2>
+            <p style="margin-bottom: 20px; color: #4a5568; font-size: 1.1rem;">${
+              resource.description
+            }</p>
+
+            <div style="margin-bottom: 20px;">
+                <span style="
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+                    color: #2d3748;
+                    padding: 6px 14px;
+                    border-radius: 15px;
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                ">${resource.type}</span>
+            </div>
+
+            <h3 style="color: #2d3748; margin-bottom: 15px;">📋 What You'll Learn</h3>
+            <ul style="margin-bottom: 25px;">
+                ${resource.content
+                  .map(
+                    (item) =>
+                      `<li style="margin: 8px 0; color: #4a5568;">${item}</li>`
+                  )
+                  .join("")}
+            </ul>
+
+            <div style="text-align: center;">
+                <a href="${resource.url}" target="_blank" style="
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    padding: 12px 24px;
+                    border-radius: 25px;
+                    text-decoration: none;
+                    font-weight: 600;
+                    display: inline-block;
+                    transition: transform 0.3s ease;
+                " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    🚀 Start Learning
+                </a>
+            </div>
+        `;
 
         document.getElementById("detailModal").style.display = "block";
       }
